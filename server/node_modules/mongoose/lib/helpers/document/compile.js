@@ -1,5 +1,6 @@
 'use strict';
 
+const clone = require('../../helpers/clone');
 const documentSchemaSymbol = require('../../helpers/symbols').documentSchemaSymbol;
 const internalToObjectOptions = require('../../options').internalToObjectOptions;
 const utils = require('../../utils');
@@ -22,6 +23,10 @@ const _isEmptyOptions = Object.freeze({
   virtuals: false,
   getters: false,
   transform: false
+});
+
+const noDottedPathGetOptions = Object.freeze({
+  noDottedPath: true
 });
 
 /**
@@ -64,6 +69,7 @@ function defineKey({ prop, subprops, prototype, prefix, options }) {
   Document = Document || require('../../document');
   const path = (prefix ? prefix + '.' : '') + prop;
   prefix = prefix || '';
+  const useGetOptions = prefix ? Object.freeze({}) : noDottedPathGetOptions;
 
   if (subprops) {
     Object.defineProperty(prototype, prop, {
@@ -110,7 +116,7 @@ function defineKey({ prop, subprops, prototype, prefix, options }) {
             configurable: true,
             writable: false,
             value: function() {
-              return utils.clone(_this.get(path, null, {
+              return clone(_this.get(path, null, {
                 virtuals: this &&
                   this.schema &&
                   this.schema.options &&
@@ -188,7 +194,12 @@ function defineKey({ prop, subprops, prototype, prefix, options }) {
       enumerable: true,
       configurable: true,
       get: function() {
-        return this[getSymbol].call(this.$__[scopeSymbol] || this, path);
+        return this[getSymbol].call(
+          this.$__[scopeSymbol] || this,
+          path,
+          null,
+          useGetOptions
+        );
       },
       set: function(v) {
         this.$set.call(this.$__[scopeSymbol] || this, path, v);

@@ -10,7 +10,7 @@ export const ReadConcernLevel = Object.freeze({
 } as const);
 
 /** @public */
-export type ReadConcernLevel = typeof ReadConcernLevel[keyof typeof ReadConcernLevel];
+export type ReadConcernLevel = (typeof ReadConcernLevel)[keyof typeof ReadConcernLevel];
 
 /** @public */
 export type ReadConcernLike = ReadConcern | { level: ReadConcernLevel } | ReadConcernLevel;
@@ -20,7 +20,7 @@ export type ReadConcernLike = ReadConcern | { level: ReadConcernLevel } | ReadCo
  * of the data read from replica sets and replica set shards.
  * @public
  *
- * @see https://docs.mongodb.com/manual/reference/read-concern/index.html
+ * @see https://www.mongodb.com/docs/manual/reference/read-concern/index.html
  */
 export class ReadConcern {
   level: ReadConcernLevel | string;
