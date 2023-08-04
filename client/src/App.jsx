@@ -6,9 +6,9 @@ import { CreateRecipe } from "./pages/create-recipe";
 import { Home } from "./pages/home";
 import { SavedRecipes } from "./pages/saved-recipes";
 
-function App() {
+function Server() {
   return (
-    <div className="App">
+    <div className="Server">
       <Router>
         <Navbar />
         <Routes>
