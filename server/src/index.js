@@ -4,13 +4,13 @@ import mongoose from "mongoose";
 import { userRouter } from "./routes/user.js";
 import { recipesRouter } from "./routes/recipes.js";
 
-const app = express();
+const server = express();
 
-app.use(express.json());
-app.use(cors());
+server.use(express.json());
+server.use(cors());
 
-app.use("/auth", userRouter);
-app.use("/recipes", recipesRouter);
+server.use("/auth", userRouter);
+server.use("/recipes", recipesRouter);
 
 mongoose.connect(
   "mongodb+srv://user123:Password123Tech@test.m6cb1nv.mongodb.net/recipetest?retryWrites=true&w=majority",
@@ -20,4 +20,4 @@ mongoose.connect(
   }
 );
 
-app.listen(3001, () => console.log("Server started"));
+server.listen(3001, () => console.log("Server started"));
