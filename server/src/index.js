@@ -12,12 +12,22 @@ app.use(cors());
 app.use("/auth", userRouter);
 app.use("/recipes", recipesRouter);
 
-mongoose.connect(
-  "mongodb+srv://user123:Password123Tech@test.m6cb1nv.mongodb.net/recipetest?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
+import { MongoClient } from 'mongodb';
+
+/*
+ * Requires the MongoDB Node.js Driver
+ * https://mongodb.github.io/node-mongodb-native
+ */
+
+const agg = [];
+
+const client = await MongoClient.connect(
+  'mongodb+srv://user123:Password123Tech@test.m6cb1nv.mongodb.net/recipetest?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true }
 );
+const coll = client.db('recipetest').collection('recipes');
+const cursor = coll.aggregate(agg);
+const result = await cursor.toArray();
+await client.close();
 
 app.listen(3001, () => console.log("Server started"));
