@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 body {
@@ -80,10 +80,12 @@ a {
   margin: 20px;
   width: 400px;
 }
+
 .create-recipe form {
   display: flex;
   flex-direction: column;
 }
+
 ul {
   list-style: none;
   padding: 0;
@@ -113,4 +115,4 @@ img {
 p {
   max-width: 400px;
   font-size: 12px;
-}
+}/*# sourceMappingURL=style.css.map */
