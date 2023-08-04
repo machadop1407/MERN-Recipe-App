@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "NODE_OPTIONS='--experimental-specifier-resolution=node' nodemon src/index.js"
+    "start": "NODE_OPTIONS='--experimental-specifier-resolution=node' nodemon src/server.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
