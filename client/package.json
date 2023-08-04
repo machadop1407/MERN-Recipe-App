@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "sass":"sass --watch src/css",
     "serve": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
