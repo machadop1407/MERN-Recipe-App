@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "serve": "serve -s build",
-    "sass":"sass --watch src/scss:src/css",
+    "sass": "sass --watch src/scss:src/css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
