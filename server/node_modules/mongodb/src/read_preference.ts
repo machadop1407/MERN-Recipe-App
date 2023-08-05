@@ -16,7 +16,7 @@ export const ReadPreferenceMode = Object.freeze({
 } as const);
 
 /** @public */
-export type ReadPreferenceMode = typeof ReadPreferenceMode[keyof typeof ReadPreferenceMode];
+export type ReadPreferenceMode = (typeof ReadPreferenceMode)[keyof typeof ReadPreferenceMode];
 
 /** @public */
 export interface HedgeOptions {
@@ -56,7 +56,7 @@ export interface ReadPreferenceFromOptions extends ReadPreferenceLikeOptions {
  * used to construct connections.
  * @public
  *
- * @see https://docs.mongodb.com/manual/core/read-preference/
+ * @see https://www.mongodb.com/docs/manual/core/read-preference/
  */
 export class ReadPreference {
   mode: ReadPreferenceMode;
@@ -228,17 +228,8 @@ export class ReadPreference {
   }
 
   /**
-   * Indicates that this readPreference needs the "secondaryOk" bit when sent over the wire
-   * @deprecated Use secondaryOk instead
-   * @see https://docs.mongodb.com/manual/reference/mongodb-wire-protocol/#op-query
-   */
-  slaveOk(): boolean {
-    return this.secondaryOk();
-  }
-
-  /**
    * Indicates that this readPreference needs the "SecondaryOk" bit when sent over the wire
-   * @see https://docs.mongodb.com/manual/reference/mongodb-wire-protocol/#op-query
+   * @see https://www.mongodb.com/docs/manual/reference/mongodb-wire-protocol/#op-query
    */
   secondaryOk(): boolean {
     const NEEDS_SECONDARYOK = new Set<string>([
